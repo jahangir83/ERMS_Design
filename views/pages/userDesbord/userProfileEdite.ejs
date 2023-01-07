@@ -1,0 +1,440 @@
+
+
+<%- include('../../partial/header.ejs')%>
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css">
+<div class="container-fluid"> -->
+
+    <div class="row">
+        <div class="col-md-2">
+            <%- include("../../partial/sideNav.ejs")%>
+        </div>
+
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <div class="card card-body my-5">
+                        <h1>Update or Edit user profile  </h1>
+                    <div class="profile-pics">
+                        <img width="300" height="200s"
+                            src="/<%=profile.profilePic%>"
+                             alt="profile pics"
+                             name="profilePic"
+                             class="img-fluid img-thumbnail "
+                             id="showImage"
+                        >
+    
+                        <form 
+                            action="/upload/profilePica"
+                            id="profilePicsFrom"
+                            class="my-2"
+                            
+                        >
+                            <input 
+                               type="file" 
+                               onchange="shoImage(this)"
+                               name="profilePics" 
+                               id="profilePics" 
+                               accept="image/*"
+                            >
+                            <input
+                               type="button" 
+                               value="Remove Pics" 
+                               class="btn btn-danger btn-sm my-2"
+                             
+                                id="removeProfilePics" 
+                            >
+                        </form>  
+                    </div>
+                    <iframe name="votar" style="display:none;"></iframe>
+                    <form id="profileForm" target="votar">
+                        <!-- fullname -->
+                        <div class="form-group mb-2">
+                            <label for="name">Enter Your Full Name</label>
+                            <input
+                                type="text"
+                                name="fullname"
+                                class="form-control" 
+                                value="<%= profile.fullname ? profile.fullname : '' %>"
+                                placeholder="Enter Your Full Name " 
+                                
+                                id="fullname"
+                            >
+                            <div class="invalid-feedback"
+                            id="fullnameError">
+    
+                            </div>
+                        </div>
+                        <!-- father name -->
+                        <div class="form-group mb-2">
+                            <label for="name">Enter Your Father Name</label>
+                            <input
+                                type="text"
+                                name="fathername"
+                                class="form-control " 
+                                value="<%= profile.fathername ? profile.fathername : '' %>"
+                                placeholder="Enter Your Father Name " 
+                                
+                                id="fathername"
+                            >
+                            <div class="invalid-feedback"
+                            id="fathernameError">
+    
+                            </div>
+                        </div>
+                        <!-- Email -->
+                        <div class="form-group mb-2">
+                            <label for="email">Enter Your Email</label>
+                            <input
+                                type="text"
+                                name="email"
+                                class="form-control" 
+                                placeholder="Enter Your Name " 
+                                id="email"
+                                value="<%= profile.email%>"
+                                disabled
+                            >
+                        </div>
+                        <!-- Address -->
+                        <div class="form-group mb-2">
+                            <label for="address" class="exampleFormControlTextarea1">Enter Your Address</label>
+                        <input type="text" class="form-control" 
+                            name="address" 
+                            id="address" 
+                            value="<%= profile.address ? profile.address : '' %>"
+                            rows="3">
+                        
+    
+                        <div class="invalid-feedback"
+                            id="addressError">
+    
+                            </div>
+                        </div>
+                        <!-- Date of Birth -->
+                        <div class="form-group mb-2 mb-2"> <!-- Date input -->
+                            <label class="control-label" for="date">Date Of Birth</label>
+                            <input class="form-control" 
+                            id="date" name="date" 
+                            placeholder="MM/DD/YYY" 
+                            value="<%= profile.dateOfBrit ? profile.dateOfBrit : '' %>"
+                            type="date"/>
+    
+                            <div class="invalid-feedback"
+                            id="dateError">
+    
+                            </div>
+                          </div>
+    
+                          <!-- Gender -->
+                          <div class="form-group mb-2">
+                            
+                                <label class="control-label" for="gender">Gender</label>
+                              
+                              <select class="custom-select form-control" name="gender" id="gender">
+                                <option selected><%= profile.gender ? profile.gender : 'chsoose'   %></option>
+                                <option value="Male">Male</option>
+                                <option value="Famale">Famale</option>
+                                <option value="Others">Others</option>
+                              </select>
+    
+                              <div class="invalid-feedback"
+                            id="genderError">
+    
+                            </div>
+    
+                          </div>
+                          
+                        <!-- Phone -->
+                        <div class="form-group mb-2">
+                            <label for="bio">Enter Your Phone Number</label>
+                            <input
+                            type="number"
+                                name="phone"
+                                class="form-control " 
+                                id="phone"
+                                value="<%= profile.phone ? profile.phone : ''%>"
+                                
+                            >
+                            <div class="invalid-feedback"
+                            id="phoneError">
+    
+                            </div>
+                        </div>
+                        <!-- Language -->
+                        <div class="form-group mb-2">
+                            <label for="language">Write the language you know</label>
+                            <input
+                                name="language"
+                                class="form-control" 
+                                id="language"
+                                value="<%= profile.language ? profile.language : ''%>"
+                                placeholder=" You write this way like = Bangla, English "
+                            
+                                
+                            >
+                            <div class="invalid-feedback"
+                            id="languageError">
+    
+                            </div>
+                        </div>
+    <!-- TODO: -->
+                        <!-- country select -->
+                        <div class="form-group mb-2">
+                            
+                            <label class="control-label" for="country">Select your country</label>
+                          
+                          <select class="custom-select form-control" name="country" id="country">
+                            <option selected><%= profile.country ? profile.country : 'Choose...'   %></option>
+                            <option value="Bangladesh">Bangladesh</option>
+                            <option value="United state">United state</option>
+                            <option value="Canada">Canada</option>
+                          </select>
+                          <div class="invalid-feedback"
+                            id="countryError">
+    
+                            </div>
+    
+                      </div>
+    
+                      <!-- Skill  -->
+                      <div class="form-group mb-2">
+                        <label for="skill">Write the skill you know</label>
+                        <input
+                            name="skill"
+                            class="form-control " 
+                            id="skill"
+                            placeholder=" You write this way like = Bangla, English "
+                            value="<%= profile.skill ? profile.skill : ''%>"
+                            
+                        >
+                        <div class="invalid-feedback"
+                        id="skillError">
+    
+                        </div>
+                    </div>
+    
+                    <h4 class="display-6 bg-primary text-light">Your passport information</h4>
+                    <!-- user passport option have passport or not START-->
+                    
+                    <div class=" d-flex flex-row bd-highligh">
+                        <div class="p-2 bd-highlight">Have a passport</div>
+                        <div class="p-2 bd-highlight">
+                            <input class="form-check-input" type="radio" value="yes" name="flexRadioDefault" id="havePassportYes" checked>
+                            <label class="form-check-label" for="havePassportYes">
+                            Yes
+                        </label>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"value="no" id="havePassportNo"  >
+                            <label class="form-check-label" for="havePassportNo">
+                            No
+                            </label>
+                        </div>
+                      </div>
+                    <!-- user passport option have passport or not END-->
+                    <!-- Passport Number -->
+                    <div id="passportFrom">
+                    <div class="form-group mb-2">
+                        <label for="passportNum">Enter Your Passport Number</label>
+                        <input
+                        type="text"
+                            name="passportNumber"
+                            class="form-control " 
+                            id="passportNum"
+                            value="<%= profile.passportNumber ? profile.passportNumber : ''%>"
+                            
+                        >
+                        <div class="invalid-feedback"
+                        id="passportNumError">
+    
+                        </div>
+                    </div>
+    
+                    <!-- Passport Expire -->
+    
+                    <div class="form-group mb-2">
+                        <label for="passportEpireDate">Enter Your Passport Expire Date </label>
+                        <input
+                        type="text"
+                            name="passportEpireDate"
+                            class="form-control " 
+                            id="passportEpireDate"
+                            value="<%= profile.passportEpireDate ? profile.passportEpireDate : ''%>"
+                        
+                            
+                        >
+                        <div class="invalid-feedback"
+                        id="passportEpireDateError"
+                        >
+    
+                        </div>
+                    </div>
+    
+                    <!-- passport issu date -->
+                    <div class="form-group mb-2">
+                        <label for="passportissudate">Enter Your passport issu date</label>
+                        <input
+                        type="text"
+                            name="passportissudate"
+                            class="form-control " 
+                            id="passportissudate"
+                            value="<%= profile.passportissudate ? profile.passportissudate : ''%>"
+                        
+                            
+                        >
+                        <div class="invalid-feedback"
+                        id="passportissudateError">
+    
+                        </div>
+                    </div>
+    
+                    <div class="form-group mb-2">
+                        <label for="passportissudate">Please Upload your passport image</label>
+                        <input 
+                        type="file" 
+                      
+                        name="passport" 
+                        id="passport" 
+                        accept="image/*"
+                     >
+                        <div class="invalid-feedback"
+                        id="passportissudateError">
+    
+                        </div>
+                    </div>
+                </div>
+                    <!-- User education fild START -->
+                    <h4 class="display-6 bg-primary text-light">Your Education information</h4>
+    
+                    <div class="row">
+                        <!-- Organizetion -->
+                        <div class="col-md-6 mb-2">
+                          <input type="text" 
+                          id="college"
+                          class="form-control" 
+                          name="college"
+                          value="<%= profile.college ? profile.college : ''%>"
+                          placeholder="College/University" aria-label="organize">
+    
+                            <div class="invalid-feedback"
+                                id="collegeError">
+    
+                            </div>
+                        </div>
+    
+                        
+                        <!-- Deparment -->
+                        <div class="col-md-6 mb-2">
+                          <input type="text" 
+                          class="form-control" 
+                          id="department"
+                          name="department"
+                          value="<%= profile.department ? profile.department : ''%>"
+                          placeholder="Your department" aria-label="department">
+    
+                          <div class="invalid-feedback"
+                            id="departmentError">
+    
+                          </div>
+                        </div>
+    
+                        <!-- passing year -->
+                        <div class="col-md-6 mb-2 ">
+                            <input type="text" 
+                            class="form-control" 
+                            id="passingYear"
+                            name="passingYear"
+                            placeholder="Passing year" aria-label="passingYear"
+                            value="<%= profile.passingYear ? profile.passingYear : ''%>"
+                            >
+                            <div class="invalid-feedback"
+                            id="passingYearError">
+    
+                            </div>
+                          </div>
+    
+                          
+                          <!-- Bord -->
+                          <div class="col-md-6 mb-2">
+                            <input type="text" 
+                            class="form-control" 
+                            id="board"
+                            name="board"
+                            placeholder="Your board" 
+                            value="<%= profile.board ? profile.board : ''%>"
+                            aria-label="board">
+                            <div class="invalid-feedback"
+                            id="boardError">
+                            
+                          </div>
+                          </div>
+    
+                          <!-- Result -->
+                          <div class="col-md-6">
+                            <input type="text" 
+                            class="form-control" 
+                            id="result"
+                            name="result"
+                            value="<%= profile.result ? profile.result : ''%>"
+                            placeholder="Your Result" aria-label="Result">
+    
+                            <div class="invalid-feedback"
+                            id="resultError">
+    
+                            </div>
+                          </div>
+    
+                          
+                      </div>
+                    <!-- User education fild END -->
+    
+                        
+                    <div class="d-grid gap-2">
+                        <input style="font-weight: 900;" type="submit"  value="Save The Profile" class="btn btn-primary mt-3 ">
+                    </div>
+                    
+                        <!-- end form -->
+                </form>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    </div>
+    
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="crop-modal" data-backdrop="static" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Resize Your Image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="cropped-image"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" id="upload-image" type="button">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
+<br>
+<%- include('../../partial/footer.ejs')%>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+
+<script src="/public/scripts/profilePicsUpload.js"></script> -->
+
+
+</body>
+</html>

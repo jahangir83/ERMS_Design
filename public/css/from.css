@@ -1,0 +1,210 @@
+.heroo{
+
+    height: 150vh;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+    z-index: 2000;
+    display: none;
+     /* transform: translate( -50%, -50%); */
+  }
+  .close_popup{
+    position: absolute;
+    /* // position: fixed; */
+background: #7ed56f;
+
+    top: 2px;
+    right: 5px;
+    border: 1px solid greenyellow;
+    border-radius: 40px;
+  
+  }
+  .form-box{
+    width: 390px;
+    height: 560px;
+    position: relative;
+    margin: 6% auto;
+    background: #ddd;
+    padding: 5px;
+    overflow: hidden;
+  }
+  .form-box-button{
+    display: flex;
+      width: 220px;
+      margin: 35px auto;
+      position: relative;
+      box-shadow: 0 0  20px 9px #fff;
+      border-radius: 30px ;
+  }
+  .form-box-button .toggle-btn{
+        padding: 5px 30px;
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+        outline: none;
+        position: relative;
+       
+    }
+ 
+.form-box--btn{
+      top: 0;
+      left: 0;
+      position: absolute;
+      width: 110px;
+      height: 100%;
+      background: #7ed56f;
+      border-radius: 30px;
+      transition: .5s;
+}
+  /* End button */
+  /* Start icon */
+ .form-box-socialIcon{
+      margin: 30px auto;
+      text-align: center;
+  }
+.form-box-socialIcon span{
+    width: 30px;
+    margin: 0 12px;
+    box-shadow: 0 0  20px 0 white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    }
+.form-box-socialIcon .facebook{
+    background: #097eeb;
+    color: white;
+    font-weight: 500;
+}
+
+.form-box-socialIcon .google{
+    background: #fbbc04;
+    color: white;
+    font-weight: 500;
+}
+
+.form-box-socialIcon .twitter{
+    background: #1d9bf0;
+    color: white;
+    font-weight: 500;
+}
+    /* //End icon */
+  
+/* Start input group */
+ .form-box-inputGroup{
+      top: 160px;
+      position: absolute;
+      width: 280px;
+      transition: .5s;
+    }
+  
+ .form-box-inputGroup .input-field{
+  position: relative;
+
+        width: 100%;
+        padding: 4px  0;
+        margin: 5px 0;
+        border-left: 0;
+        border-top: 0;
+        border-right: 0;
+        border: 1px solid #7ed56f;
+        border-radius: 15px;
+        outline: none;
+        background: #cccfd9;
+      }
+      .form-box-inputGroup .input-field-log{
+        position: relative;
+              width: 100%;
+              padding: 10px  0;
+              margin: 5px 0;
+              border-left: 0;
+              border-top: 0;
+              border-right: 0;
+              border-bottom: 1px solid yellow;
+              outline: none;
+              background: transparent;
+            }
+
+  .error-show{
+position: absolute;
+    background: red;
+  }
+      .form-box-inputGroup .submit-btn{
+           width: 85%;
+           padding: 10px 30px;
+           cursor: pointer; 
+           display: block;
+           margin: auto;
+           background: #7ed56f;
+           border:0;
+           outline: none;
+           border-radius: 30px;
+      }
+  
+      .form-box-inputGroup .chech-box{
+        margin: 30px 10px  30px 0;
+       
+      }
+      .form-box-inputGroup span{
+        color: #777;
+        font-size: 12px;
+        bottom: 71px;
+        position: absolute;
+  
+      }
+    
+  
+   /* login and register */
+     #login{
+      left: 50px;
+    }
+    #register{
+      left: 450px;
+    } 
+  
+  /* TODO: */
+  
+  
+
+  
+.form-control:focus {
+  box-shadow: none;
+  border-color: #BA68C8
+}
+
+.profile-button {
+  background: rgb(99, 39, 120);
+  box-shadow: none;
+  border: none
+}
+
+.profile-button:hover {
+  background: #682773
+}
+
+.profile-button:focus {
+  background: #682773;
+  box-shadow: none
+}
+
+.profile-button:active {
+  background: #682773;
+  box-shadow: none
+}
+
+.back:hover {
+  color: #682773;
+  cursor: pointer
+}
+
+.labels {
+  font-size: 11px
+}
+
+.add-experience:hover {
+  background: #BA68C8;
+  color: #fff;
+  cursor: pointer;
+  border: solid 1px #BA68C8
+}
+  

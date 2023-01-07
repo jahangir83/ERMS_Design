@@ -1,0 +1,25 @@
+<!-- 
+	Ttitle : This is user Home page
+	Author: MD Jahangri alam
+	Description: 
+	Date: 12 October 2022
+ -->
+
+
+<%- include("./partial/header.ejs")%>
+
+<h1 class="" style="text-align: center; margin-top: 20px;">This is application Home page</h1>
+
+<% if(user.username) {%>
+<h1 style="text-align:center"><%= user.username%> </h1>
+<%} else{%>
+	<h1> Your not registert user</h1>
+
+	<% } %>
+
+
+
+<%- include("./partial/footer.ejs")%>
+
+
+

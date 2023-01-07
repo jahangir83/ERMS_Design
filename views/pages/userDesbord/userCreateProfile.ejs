@@ -1,0 +1,779 @@
+
+
+<%- include("../../partial/header.ejs")%>
+
+
+
+
+<div class="row">
+	<div class="col-md-2">
+		<%- include("../../partial/sideNav.ejs")%>
+	</div>
+
+	<div class="col-md-10">
+		<div class="row">
+			<div class="col-md-10 offset-md-1">
+				<div class="card card-body my-5">
+					<h1>Create user profile </h1>
+
+				<div class="profile-pics row">
+					<div class="col-md-4">
+						<img width="300" height="200s"
+						src="/public/images/erms.jpg"
+						 alt="profile pics"
+						 name="profilePic"
+						 class="img-fluid img-thumbnail "
+						 id="showImage"
+					>
+					</div>
+
+					<div class="col-md-6">
+						<form 
+						action="/upload/profilePica"
+						id="profilePicsFrom"
+						class="my-2"
+						
+					>
+						<input 
+						   type="file" 
+						   onchange="shoImage(this)"
+						   name="profilePics" 
+						   id="profilePics" 
+						   accept="image/*"
+						>
+						<input 
+						   type="button" 
+						   value="Remove Pics" 
+						   class="btn btn-danger btn-sm my-2"
+						 
+							id="removeProfilePics" 
+						>
+					</form> 
+					</div> 
+				</div>
+				<iframe name="votar" style="display:none;"></iframe>
+				<form id="profileForm" target="votar">
+					<div class="row">
+						<!-- fullname -->
+					<div class="form-group col-md-6 mb-2">
+						<label for="name">Enter Your Full Name</label>
+						<input
+							type="text"
+							name="fullname"
+							class="form-control" 
+							placeholder="Enter Your Full Name " 
+							
+							id="fullname"
+						>
+						<div class="invalid-feedback"
+						id="fullnameError">
+
+						</div>
+					</div>
+					<!-- father name -->
+					<div class="form-group col-md-6 mb-2">
+						<label for="name">Enter Your Father Name</label>
+						<input
+							type="text"
+							name="fathername"
+							class="form-control " 
+							placeholder="Enter Your Father Name " 
+							
+							id="fathername"
+						>
+						<div class="invalid-feedback"
+						id="fathernameError">
+
+						</div>
+					</div>
+					<!-- Email -->
+					<div class="form-group col-md-6 mb-2">
+						<label for="email">Enter Your Email</label>
+						<input
+							type="text"
+							name="email"
+							class="form-control" 
+							placeholder="Enter Your Name " 
+							id="email"
+							value="<%= user.email%>"
+							disabled
+						>
+					</div>
+					<!-- Address -->
+					<div class="form-group col-md-6 mb-2">
+						<label for="address" class="exampleFormControlTextarea1">Enter Your Address</label>
+						<textarea class="form-control" 
+						name="address" 
+						id="address" 
+						rows="3">
+					</textarea>
+
+					<div class="invalid-feedback"
+						id="addressError">
+
+						</div>
+					</div>
+					<!-- Date of Birth -->
+					<div class="form-group col-md-6 mb-2 mb-2"> <!-- Date input -->
+						<label class="control-label" for="date">Date Of Birth</label>
+						<input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="date"/>
+
+						<div class="invalid-feedback"
+						id="dateError">
+
+						</div>
+					  </div>
+
+					  <!-- Gender -->
+					  <div class="form-group col-md-6 mb-2">
+						
+							<label class="control-label" for="gender">Gender</label>
+						  
+						  <select class="custom-select form-control" name="gender" id="gender">
+							<option selected>Choose...</option>
+							<option value="Male">Male</option>
+							<option value="Famale">Famale</option>
+							<option value="Others">Others</option>
+						  </select>
+
+						  <div class="invalid-feedback"
+						id="genderError">
+
+						</div>
+
+					  </div>
+					  
+					<!-- Phone -->
+					<div class="form-group col-md-6 mb-2">
+						<label for="bio">Enter Your Phone Number</label>
+						<input
+						type="number"
+							name="phone"
+							class="form-control " 
+							id="phone"
+						
+							
+						>
+						<div class="invalid-feedback"
+						id="phoneError">
+
+						</div>
+					</div>
+					<!-- Language -->
+					<div class="form-group col-md-6 mb-2">
+						<label for="language">Write the language you know</label>
+						<input
+							name="language"
+							class="form-control" 
+							id="language"
+							placeholder=" You write this way like = Bangla, English "
+						
+							
+						>
+						<div class="invalid-feedback"
+						id="languageError">
+
+						</div>
+					</div>
+<!-- TODO: -->
+					<!-- country select -->
+					<div class="form-group col-md-6 mb-2">
+						
+						<label class="control-label" for="country">Select your country</label>
+					  
+					  <select class="custom-select form-control" name="country" id="country">
+						<option selected>Choose...</option>
+						<option value="Bangladesh">Bangladesh</option>
+						<option value="United state">United state</option>
+						<option value="Canada">Canada</option>
+					  </select>
+					  <div class="invalid-feedback"
+						id="countryError">
+
+						</div>
+
+				  </div>
+
+				  <!-- Skill  -->
+				  <div class="form-group col-md-6 mb-2">
+					<label for="skill">Write the skill you know</label>
+					<input
+						name="skill"
+						class="form-control " 
+						id="skill"
+						placeholder=" You write this way like = Bangla, English "
+						
+					>
+					<div class="invalid-feedback"
+					id="skillError">
+
+					</div>
+				</div>
+
+				<h4 class="display-6 bg-primary text-light">Your passport information</h4>
+				<!-- user passport option have passport or not START-->
+				
+				<div class=" d-flex flex-row bd-highligh">
+					<div class="p-2 bd-highlight">Have a passport</div>
+					<div class="p-2 bd-highlight">
+						<input class="form-check-input" type="radio" value="yes" name="flexRadioDefault" id="havePassportYes" checked>
+						<label class="form-check-label" for="havePassportYes">
+						Yes
+					</label>
+					</div>
+					<div class="p-2 bd-highlight">
+						<input class="form-check-input" type="radio" name="flexRadioDefault"value="no" id="havePassportNo"  >
+						<label class="form-check-label" for="havePassportNo">
+						No
+						</label>
+					</div>
+				  </div>
+				<!-- user passport option have passport or not END-->
+				<!-- Passport Number -->
+				<div class="row" id="passportFrom">
+					<div class="form-group col-md-6 mb-2">
+						<label for="passportNum">Enter Your Passport Number</label>
+						<input
+						type="text"
+							name="passportNumber"
+							class="form-control " 
+							id="passportNumber"
+							
+							
+						>
+						<div class="invalid-feedback"
+						id="passportNumberError">
+
+						</div>
+					</div>
+
+				<!-- Passport Expire -->
+
+					<div class="form-group col-md-6 mb-2">
+						<label for="passportEpireDate">Enter Your Passport Expire Date </label>
+						<input
+						type="text"
+							name="passportEpireDate"
+							class="form-control " 
+							id="passportEpireDate"
+						
+							
+						>
+						<div class="invalid-feedback"
+						id="passportEpireDateError"
+						>
+
+						</div>
+					</div>
+
+				<!-- passport issu date -->
+				<!-- <div class="form-group col-md-6 mb-2">
+					<label for="passportissudate">Enter Your passport issu date</label>
+					<input
+					type="text"
+						name="passportissudate"
+						class="form-control " 
+						id="passportissudate"
+					
+						
+					>
+					<div class="invalid-feedback"
+					id="passportissudateError">
+
+					</div>
+				</div> -->
+
+					<div class="form-group col-md-6 mb-2">
+						<label for="passportissudate" class="text-info">Please Upload your passport image</label>
+						<input 
+						type="file" 
+					
+						name="passport" 
+						id="passport" 
+						accept="image/*"
+					>
+						<div class="invalid-feedback"
+						id="passportissudateError">
+
+						</div>
+					</div>
+			</div>
+				<!-- User education fild START -->
+				<h4 class="display-6 bg-primary text-light">Your Education information</h4>
+			<div class="row" id="mainRow">
+				<!-- Education row START -->
+				<div id="EducationFromRow" class="row">
+					<!-- Organizetion -->
+					<div class="col-md-3 mb-2">
+					  <label for="college">College/Univercity</label>
+					  <input type="text" 
+					  id="college"
+					  class="form-control" 
+					  name="college"
+					  placeholder="College/University" aria-label="organize">
+
+						<div class="invalid-feedback"
+							id="collegeError">
+
+						</div>
+					</div>
+					<!-- passing year -->
+					<div class="col-md-3 mb-2 ">
+						<label for="passingYear">Passing Year</label>
+						<input type="text" 
+						class="form-control" 
+						id="passingYear"
+						name="passingYear"
+						placeholder="Passing year" aria-label="passingYear">
+
+						<div class="invalid-feedback"
+						id="passingYearError">
+
+						</div>
+					</div>
+					  
+					  <!-- Bord -->
+					<div class="col-md-3 mb-2">
+						<label for="board">Board</label>
+						<input type="text" 
+						class="form-control" 
+						id="board"
+						name="board"
+						placeholder="Your board" 
+						aria-label="board">
+
+						<div class="invalid-feedback"
+						id="boardError">
+						
+					  	</div>
+					</div>
+					  <!-- Result -->
+					<div class="col-md-2">
+						<label for="result">Result</label>
+						<input type="text" 
+						class="form-control" 
+						id="result"
+						name="result"
+						placeholder="Your Result" aria-label="Result">
+
+						<div class="invalid-feedback"
+						id="resultError">
+
+						</div>
+					</div>
+
+					<div class="col-md-1">
+						<p class="btn btn-danger" 
+						style="margin: 23px 0 0 0;text-align: center;"
+						>
+						&#10008;
+						</p>
+					</div>
+				</div>
+
+				<!-- Education row End -->
+				  	<!-- ADD NEW COLUNm -->
+					  <div class="add-new-fild" style="display: block;">
+						<span onclick="EduNewFildGenerate()" style="float: right;" class="btn btn-secondary">
+							Add New fild
+						</span>
+					</div>
+				<!-- main row -->
+				</div>
+				<!-- User education fild END -->
+
+					
+				<div class="d-grid gap-2">
+					<input style="font-weight: 900; display: block;" type="submit"  value="Save The Profile" class="btn btn-primary mt-3 ">
+				</div>
+				</div>
+					<!-- end form -->
+			</form>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="crop-modal" data-backdrop="static" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+	<h5 class="modal-title" id="staticBackdropLabel">Resize Your Image</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	</button>
+  </div>
+  <div class="modal-body">
+	<div id="cropped-image"></div>
+  </div>
+  <div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	<button class="btn btn-primary" id="upload-image" type="button">Upload</button>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- Profile pichture show and remove -->
+<script>
+	let file = document.getElementById("profilePics")
+	let img = document.getElementById("showImage")
+	let removeImage = document.getElementById("removeProfilePics")
+	function shoImage(input){
+		console.log(input)
+		if (input.files && input.files[0]) {
+			let fileReader = new FileReader()
+
+			fileReader.onload = function(e){
+				img.src = e.target.result
+			}
+			fileReader.readAsDataURL(input.files[0])
+		}
+	}
+
+	removeImage.addEventListener('click', () => {
+		
+		file.value = "";
+		img.src = ''
+	})
+</script>
+
+<!-- user Profile create submission -->
+<script>
+
+// User input fild item Start
+	let profilePic = document.getElementById("profilePics")
+	let fullname = document.getElementById('fullname')
+	let fathername = document.getElementById('fathername')
+	let email = document.getElementById('email')
+	let address = document.getElementById('address')
+
+	let date = document.getElementById('date')
+	let gender = document.getElementById('gender')
+	let phone = document.getElementById('phone')
+	let language = document.getElementById("language")
+	let country = document.getElementById('country')
+	let skill = document.getElementById('skill')
+	let passportNumber = document.getElementById('passportNumber')
+	let passportEpireDate = document.getElementById('passportEpireDate')
+	// let passportissudate = document.getElementById('passportissudate')
+	let college = document.getElementById('college')
+	// let department = document.getElementById('department')
+	let passingYear = document.getElementById('passingYear')
+	let board = document.getElementById('board')
+	let result = document.getElementById('result')
+
+
+
+// User input fild item End
+
+//User input error fild start
+let fullnameError = document.getElementById('fullnameError')
+let fathernameError = document.getElementById('fathernameError')
+let addressError = document.getElementById('addressError')
+let dateError = document.getElementById('dateError')
+let genderError = document.getElementById('genderError')
+let phoneError = document.getElementById('phoneError')
+let languageError = document.getElementById('languageError')
+let countryError = document.getElementById('countryError')
+let skillError = document.getElementById('skillError')
+let passportNumError = document.getElementById('passportNumberError')
+let passportEpireDateError = document.getElementById('passportEpireDateError')
+// let passportissudateError = document.getElementById('passportissudateError')
+let passport = document.getElementById('passport')
+//Education fild
+let collegeError = document.getElementById('collegeError')
+// let departmentError = document.getElementById('departmentError')
+let passingYearError = document.getElementById('passingYearError')
+let boardError = document.getElementById('boardError')
+let resultError = document.getElementById('resultError')
+
+
+//User inpur error fild End
+
+//have Passport or not START
+let havePassportYes = document.getElementById("havePassportYes")
+let havePassportNo = document.getElementById("havePassportNo")
+
+let havePassportValueParrOrNot = true
+havePassportNo.addEventListener("click", (event) => {
+	document.getElementById("passportFrom").style.display= "none"
+	havePassportValueParrOrNot = false
+})
+havePassportYes.addEventListener("click", (event) => {
+	document.getElementById("passportFrom").style.display= "block"
+	// When this fild display block than have create problem DISPLAY STYLE broke So i remove style  Attribue
+	document.getElementById("passportFrom").removeAttribute("style");
+	havePassportValueParrOrNot = true
+
+})
+
+	
+
+let UserProfile = document.getElementById("profileForm")
+
+UserProfile.addEventListener("submit",async (event) =>{
+				
+	try {
+		let value = await {
+		fullname: fullname.value,
+		fathername:fathername.value,
+		email: email.value,
+		address: address.value,
+		date: date.value,
+		gender: gender.value,
+		phone: phone.value,
+		language: language.value,
+		country: country.value,
+		skill: skill.value,
+		college: college.value,
+		// department: department.value,
+		passingYear: passingYear.value,
+		board : board.value,
+		result : result.value,
+	
+		
+		}
+		function getFormData(object) {
+			const formData = new FormData();
+			Object.keys(object).forEach(key => formData.append(key, object[key]));
+			formData.append('profilePic', profilePic.files[0]);
+			formData.append('passport', passport.files[0])
+			return formData;
+		}
+
+		let finalFormData
+		if(havePassportValueParrOrNot){
+			console.log("true call");
+
+			value.passportNumber = passportNumber.value;
+			value.passportEpireDate = passportEpireDate.value;
+			// value.passportissudate = passportissudate.value;
+			console.log(value);
+			finalFormData = await getFormData(value)
+		}else{
+			console.log("false call");
+			finalFormData = await getFormData(value)
+		}
+		
+		fetch('http://localhost:9090/profile/addprofile',{
+			method: 'post',
+			mode: 'cors',
+			body: finalFormData
+		})
+		
+		
+		.then((res) =>{ 
+			return res.json()
+			})
+		
+		.then( res => {
+			console.log(res);
+			if(!res.error){
+				event.target.removeAttribute('target')
+				console.log("_____not error -----------------------");
+				window.location.replace("http://localhost:9090/profile/getprofile");
+			}else{
+				console.log("________________________ yes error ", res.error);
+				fullname.classList.remove('is-invalid')
+				fullname.style.border = ' 1px solid #7ed56f'
+				fullnameError.innerText = ''
+
+				fathername.classList.remove('is-invalid')
+				fathername.style.border = ' 1px solid #7ed56f'
+				fathernameError.innerText = ''
+
+				address.classList.remove('is-invalid')
+				address.style.border = ' 1px solid #7ed56f'
+				addressError.innerText = ''
+
+				date.classList.remove('is-invalid')
+				date.style.border = ' 1px solid #7ed56f'
+				dateError.innerText = ''
+
+				gender.classList.remove('is-invalid')
+				gender.style.border = ' 1px solid #7ed56f'
+				genderError.innerText = ''
+
+				phone.classList.remove('is-invalid')
+				phone.style.border = ' 1px solid #7ed56f'
+				phoneError.innerText = ''
+
+				country.classList.remove('is-invalid')
+				country.style.border = ' 1px solid #7ed56f'
+				countryError.innerText = ''
+
+				language.classList.remove('is-invalid')
+				language.style.border = ' 1px solid #7ed56f'
+				languageError.innerText = ''
+
+				skill.classList.remove('is-invalid')
+				skill.style.border = ' 1px solid #7ed56f'
+				skillError.innerText = ''
+				//Passport options
+				passportNumber.classList.remove('is-invalid')
+				passportNumber.style.border = ' 1px solid #7ed56f'
+				passportNumError.innerText = ''
+				
+				passportEpireDate.classList.remove('is-invalid')
+				passportEpireDate.style.border = ' 1px solid #7ed56f'
+				passportEpireDateError.innerText = ''
+									
+				// passportissudate.classList.remove('is-invalid')
+				// passportissudate.style.border = ' 1px solid #7ed56f'
+				// passportissudateError.innerText = ''
+				//Education 
+				college.classList.remove('is-invalid')
+				college.style.border = ' 1px solid #7ed56f'
+				collegeError.innerText = ''
+
+				// department.classList.remove('is-invalid')
+				// department.style.border = ' 1px solid #7ed56f'
+				// departmentError.innerText = ''
+
+				passingYear.classList.remove('is-invalid')
+				passingYear.style.border = ' 1px solid #7ed56f'
+				passingYearError.innerText = ''
+
+				board.classList.remove('is-invalid')
+				board.style.border = ' 1px solid #7ed56f'
+				boardError.innerText = ''
+
+				result.classList.remove('is-invalid')
+				result.style.border = ' 1px solid #7ed56f'
+				resultError.innerText = ''
+
+
+
+				for(let i = 0; i < res.error.length; i++){
+					switch (res.error[i].param) {
+						case 'fullname':
+							fullname.classList.add('is-invalid')
+							fullname.style.border = ' 1px solid red'
+							fullnameError.innerText = res.error[i].msg
+							break;
+
+						case'fathername':
+							fathername.classList.add('is-invalid')
+							fathername.style.border = ' 1px solid red'
+							fathernameError.innerText = res.error[i].msg
+							break;
+
+						case "date":
+							date.classList.add('is-invalid')
+							date.style.border = ' 1px solid red'
+							dateError.innerText= res.error[i].msg
+							break;
+
+						case "address":
+							address.classList.add('is-invalid')
+							address.style.border = ' 1px solid red'
+							addressError.innerText= res.error[i].msg
+							break;
+
+						case "gender":
+							gender.classList.add('is-invalid')
+							gender.style.border = ' 1px solid red'
+							genderError.innerText= res.error[i].msg
+							break;
+
+						case "phone":	
+							phone.classList.add('is-invalid')
+							phone.style.border = ' 1px solid red'
+							phoneError.innerText= res.error[i].msg
+							break;
+
+						case "language":	
+							language.classList.add('is-invalid')
+							language.style.border = ' 1px solid red'
+							languageError.innerText= res.error[i].msg
+							break;
+
+						case "country":
+							country.classList.add('is-invalid')
+							country.style.border = ' 1px solid red'
+							countryError.innerText= res.error[i].msg
+							break;
+
+						case "skill":
+							skill.classList.add('is-invalid')
+							skill.style.border = ' 1px solid red'
+							skillError.innerText= res.error[i].msg
+							break;
+
+						case "passportNumber":
+							console.log("passportNuber")
+							passportNumber.classList.add('is-invalid')
+							passportNumber.style.border = ' 1px solid red'
+							passportNumError.innerText= res.error[i].msg
+							break;
+
+						case "passportEpireDate":
+							passportEpireDate.classList.add('is-invalid')
+							passportEpireDate.style.border = ' 1px solid red'
+							passportEpireDateError.innerText= res.error[i].msg
+							break;
+
+						//Education
+						case "college":
+							college.classList.add('is-invalid')
+							college.style.border = ' 1px solid red'
+							collegeError.innerText= res.error[i].msg
+							break;
+						case "board":
+							board.classList.add('is-invalid')
+							board.style.border = ' 1px solid red'
+							boardError.innerText= res.error[i].msg
+							break;
+						case "passingYear":
+							passingYear.classList.add('is-invalid')
+							passingYear.style.border = ' 1px solid red'
+							passingYearError.innerText= res.error[i].msg
+							break;
+						case "result":
+							result.classList.add('is-invalid')
+							result.style.border = ' 1px solid red'
+							resultError.innerText= res.error[i].msg
+							break;
+
+
+						default:
+							break;
+			}
+				}
+			}
+			
+
+		})
+		.catch((err) =>{
+			console.log(err)
+		})
+	} catch (error) {
+		console.log(error)
+	}
+});
+
+
+
+
+	function genarateReques(url, method, data) {
+	let headers = new Headers()
+			headers.append('Content-Type', 'application/x-www-form-urlencoded')
+
+		let request = new Request(url, {
+			method,
+			body:  JSON.stringify(data),
+			headers,
+			mode: 'cors',
+		})
+		return request
+	}
+
+</script>
+
+<%- include("../../partial/footer.ejs")%>

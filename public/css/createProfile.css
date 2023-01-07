@@ -1,0 +1,18 @@
+/**
+Author : Md jahangir alam
+
+*/
+
+
+
+
+/* Education fild form Start */
+#mainRow{
+    position: relative;
+    padding-bottom: 50px;
+}
+.add-new-fild{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}

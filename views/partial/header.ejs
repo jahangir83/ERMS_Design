@@ -1,0 +1,469 @@
+<!-- 
+	Ttitle : This is header and navigation file 
+	Author: MD Jahangri alam
+	Description: 
+	Date: 13 October 2022
+ -->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="/public/images/erms.jpg">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <link rel="stylesheet" href="/public/css/from.css">
+  <link rel="stylesheet" href="/public/css/createProfile.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap4" />
+
+	<title>For create ERMS company </title>
+	</head>
+
+	<body>
+
+		<!-- Start Header/Navigation -->
+		<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+
+			<div class="container">
+				<a class="navbar-brand" href="http://localhost:8080/"><img width="40px" src="/public/images/erms.jpg" alt=""><span>.</span></a>
+
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarsFurni">
+					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+						<li class="nav-item active">
+							<a class="nav-link" href="/">Home</a>
+						</li>
+						<li class="nav-item active"><a class="nav-link" href="/profile/getprofile">Create Profile</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">View profile</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+
+						<li class="nav-item"><a class="nav-link" href="#">Contact us</a></li>
+					</ul>
+
+					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5" id="userIcon">
+					<!-- user login icon chenge START -->
+					<% if(isLoggedIn) { %>
+						<li class="nav-item" id="user_logout">
+							<a class="nav-link" href="/auth/logout">LogOut </a>
+						  </li>
+					  <% }else{ %>
+						<li class="nav-item" id="user_register">
+							<a href="#" class="nav-link">
+							  <img src="/public/images/user.svg" alt="Login">
+							</a>
+						  </li>
+						  <!--  -->
+					  
+						<% } %>
+					<!-- user login icon chenge END -->
+					</ul>
+				</div>
+			</div>
+				
+		
+
+		</nav>
+		<!-- End Header/Navigation -->
+
+
+
+
+
+
+<!-- User register from start -->
+
+
+        <div id="close" class="heroo">
+			
+			<div class="form-box">
+				<button id="close_popup" class="close_popup">X</button>
+				<div class="form-box-button">
+					<div class="form-box--btn" id="btn"></div>
+					<button class="toggle-btn" onclick="login()">Login</button>
+					<button class="toggle-btn" onclick="register()">Register</button>
+				</div>
+				<div class="form-box-socialIcon">
+					<span class="facebook">F</span>
+					<span class="twitter">T</span>
+					<span class="google">G</span>
+				</div>
+				<!-- login form start -->
+				<iframe name="votar" style="display:none;"></iframe>
+				<form id="login" target="votar" class="form-box-inputGroup">
+					<div class="input-group has-validation">
+						<input type="text" name="email" id="loginInputFeild" placeholder="Enter your username or Email"  class="input-field ">
+                    <div class="invalid-feedback" id="LoginEmailError">
+						
+                    </div>
+					</div>
+
+					<div class="input-group has-validation">
+						<input type="password" name="password" id="LoginPassword" placeholder="Enter your password"  class="input-field ">
+                    <div class="invalid-feedback" id="loginPassError">
+                
+                    </div>
+					</div>
+					<input type="checkbox"  class="chech-box"><span>REmember password</span>
+					<button type="submit" class="submit-btn" >Log in</button>
+				</form>
+				<!-- login form End -->
+
+
+				<!-- Register form start -->
+				<iframe name="votar" style="display:none;"></iframe>
+				<form id="register" target="votar" class="form-box-inputGroup">
+					<div class="input-group has-validation">
+						<input type="text" name="username" id="username" placeholder="Enter your username"  class="input-field ">
+                    <div class="invalid-feedback" id="username-error">
+						
+                    </div>
+					</div>
+
+
+					<div class="input-group has-validation">
+						<input type="text" name="email" id="input-email" placeholder="Enter you email" class="input-field ">
+                    <div class="invalid-feedback" id="emailError">
+						
+                    </div>
+					</div>
+
+					<div class="input-group has-validation">
+						<input type="password" name="password" id="inputPassword" placeholder="Enter your password"  class="input-field">
+                    <div class="invalid-feedback" id="passwordError">
+                
+                    </div>
+					</div>
+
+					<div class="input-group has-validation">
+						<input type="password" name="confirmPassword" placeholder="Confirm Password" id="confirmPassword"  class="input-field ">
+                    <div class="invalid-feedback" id="confirmpassword-error">
+                
+						
+                    </div>
+					</div>
+					
+					<input type="checkbox"  class="chech-box"><span>I am </span>
+					<button type="submit" class="submit-btn">Register</button>
+				</form>
+				<!-- Register form End -->
+
+
+			</div>
+		</div>
+		
+		
+<!-- User register from end -->
+
+<!-- user login and register icon change  -->
+<!-- <script>
+
+	let userIcon = document.getElementById('userIcon');
+		
+	if(!JSON.parse(sessionStorage.getItem('sessionObject'))){
+		let usericonimg = document.createElement('li')
+		usericonimg.id = 'user_register';
+		let userlink = document.createElement('a')
+		userlink.href = '#'
+		userlink.innerText = 'Log out'
+		usericonimg.classList.add('nav-link')
+
+		let img = document.createElement('img')
+		img.src = '/public/images/user.svg'
+		usericonimg.appendChild(img)
+
+		userIcon.appendChild(usericonimg)
+	}else{
+
+		if(JSON.parse(sessionStorage.getItem('sessionObject')).someOtherSessionData.islogin){
+			let usericonLogout = document.createElement('li')
+			usericonLogout.id = 'user_logout';
+			let userlink = document.createElement('a')
+			userlink.href = '#'
+			userlink.innerText = 'Log out'
+			userlink.style.fontWeight = 500;
+			userlink.style.color = 'white'
+			userlink.classList.add('nav-link')
+		
+			usericonLogout.appendChild(userlink)
+
+			userIcon.appendChild(usericonLogout)
+		}else{
+			let usericonimg = document.createElement('li')
+			usericonimg.id = 'user_register';
+			let userlink = document.createElement('a')
+			userlink.href = '#'
+			userlink.innerText = 'Log out'
+			usericonimg.classList.add('nav-link')
+
+			let img = document.createElement('img')
+			img.src = '/public/images/user.svg'
+			usericonimg.appendChild(img)
+
+			userIcon.appendChild(usericonimg)
+		}
+		//
+		
+	}
+ -->
+
+</script>
+
+
+<!-- login page style start -->
+<script>
+	let x = document.getElementById("login")
+	let y = document.getElementById("register")
+	let z= document.getElementById("btn")
+	let close = document.getElementById("close")
+	let closeBtn = document.getElementById("close_popup")
+	let userRegister = document.getElementById("user_register")
+
+
+	closeBtn.addEventListener('click', () => {
+		close.style.display = "none"
+	})
+	if(userRegister){
+		userRegister.addEventListener('click', () => {
+		close.style.display = "block"
+	})
+	}
+	// c.style.display = "none"
+	
+
+	function register(){
+		x.style.left = "-400px";
+		y.style.left = "50px";
+		z.style.left = "110px"
+	}
+
+	function login(){
+		x.style.left = "50px";
+		y.style.left = "450px";
+		z.style.left = "0px"
+	}
+</script>
+
+<!-- user Register system start -->
+<script>
+
+	let username = document.getElementById('username')
+	let emailvalue = document.getElementById('input-email')
+	let inputPassword = document.getElementById('inputPassword')
+	let confirmPassword = document.getElementById('confirmPassword')
+
+	let usernaem_error = document.getElementById('username-error')
+	let email_error = document.getElementById('emailError')
+	let password_error = document.getElementById('passwordError')
+	let confirpass_error = document.getElementById('confirmpassword-error')
+	
+	let submit = document.getElementById("register")
+
+	submit.addEventListener("submit", async () =>{
+		
+		let close = document.getElementById("close")
+		
+		try {
+			let value = await {
+			username: username.value,
+			email:emailvalue.value,
+			password: inputPassword.value,
+			confirmPassword: confirmPassword.value
+			
+			}
+			console.log("value", value);
+			let sumbitUrl =await genarateReques('http://localhost:9090/auth/signup','POST', value)
+			console.log(sumbitUrl);
+			fetch(sumbitUrl)
+
+			.then((res) =>{ return res.json()})
+			.then( res => {
+console.log(res);
+				if(!res.error){
+
+					close.style.display = 'none';
+					window.location.replace("http://localhost:9090/profile/getprofile");
+					event.target.removeAttribute('target')
+				}else{
+
+					username.classList.remove('is-invalid')
+					username.style.border = ' 1px solid #7ed56f'
+					usernaem_error.innerText = ''
+
+					emailvalue.classList.remove('is-invalid')
+					emailvalue.style.border = ' 1px solid #7ed56f'
+					email_error.innerText = ''
+
+					inputPassword.classList.remove('is-invalid')
+					inputPassword.style.border = ' 1px solid #7ed56f'
+					password_error.innerText = ''
+
+					confirmPassword.classList.remove('is-invalid')
+					confirmPassword.style.border = ' 1px solid #7ed56f'
+					confirpass_error.innerText = ''
+
+
+					for(let i = 0; i < res.error.length; i++){
+					switch (res.error[i].param) {
+					case 'username':
+						
+						username.classList.add('is-invalid')
+						username.style.border = ' 1px solid red'
+						usernaem_error.innerText = res.error[i].msg
+						break;
+					case'email':
+						emailvalue.classList.add('is-invalid')
+						emailvalue.style.border = ' 1px solid red'
+						email_error.innerText = res.error[i].msg
+						break;
+					case "password":
+						inputPassword.classList.add('is-invalid')
+						inputPassword.style.border = ' 1px solid red'
+						password_error.innerText= res.error[i].msg
+						break;
+					case "confirmPassword":
+						
+						confirmPassword.classList.add('is-invalid')
+						confirmPassword.style.border = ' 1px solid red'
+						confirpass_error.innerText= res.error[i].msg
+						break;
+					default:
+						break;
+				}
+				}
+				}
+				console.timeEnd()
+
+			})
+			.catch((err) =>{
+				console.log(err)
+			})
+		} catch (error) {
+			console.log(error)
+		}
+	}
+)
+
+
+
+
+
+	function genarateReques(url, method, data) {
+	let headers = new Headers()
+			headers.append('Accept', 'Application/JSON')
+			headers.append('Content-Type', 'Application/JSON')
+
+		let request = new Request(url, {
+			method,
+			body:  JSON.stringify(data),
+			headers,
+			mode: 'cors',
+		})
+		return request
+	}
+</script>
+<!-- Register form Start -->
+
+<!-- Login from start -->
+
+<script>
+	let userORemail = document.getElementById('loginInputFeild');
+	let userLogPass = document.getElementById('LoginPassword');
+	let LogErrorEmail = document.getElementById('LoginEmailError');
+	let LogPassError = document.getElementById('loginPassError');
+	let loginSubmit = document.getElementById("login")
+
+	loginSubmit.addEventListener("submit", async (event) => {
+		let close = document.getElementById("close")
+		
+		if(userORemail.value == ''){
+			userORemail.classList.add('is-invalid')
+			userORemail.style.border = ' 1px solid red'
+			LogErrorEmail.innerText = "please enter your email"
+		}else if(userLogPass.value == ''){
+			userORemail.classList.remove('is-invalid')
+			userORemail.style.border = ' 1px solid #7ed56f'
+			LogErrorEmail.innerText = ""
+			userLogPass.classList.add('is-invalid')
+			userLogPass.style.border = ' 1px solid red'
+			LogPassError.innerText= 'please enter you password'
+			return
+		}else{
+
+			userORemail.classList.remove('is-invalid')
+			LogErrorEmail.innerText = ""
+			userLogPass.classList.remove('is-invalid')
+			LogPassError.innerText= ''
+			try {
+			let value = await {
+			email:userORemail.value,
+			password: userLogPass.value,
+			
+			}
+			let loginUrl =await genarateReques('http://localhost:9090/auth/login','POST', value)
+
+			fetch(loginUrl)
+
+			.then((res) =>{ return res.json()})
+			.then( res => {
+				console.log(res);
+				console.log(!res.error);
+				if(!res.error){
+					close.style.display = 'none';
+					window.location.replace('http://localhost:9090/profile/getprofile')
+					event.target.removeAttribute('target')
+
+				}else{
+
+					userORemail.classList.remove('is-invalid')
+					LogErrorEmail.innerText = ''
+
+					userLogPass.classList.remove('is-invalid')
+					LogPassError.innerText = ''
+
+
+					for(let i = 0; i < res.error.length; i++){
+					switch (res.error[i].param) {
+					case 'username':
+						console.log(res.error[i].msg);
+						userORemail.classList.add('is-invalid')
+						LogErrorEmail.innerText = res.error[i].msg
+						break;
+					case'email':
+					console.log(res.error[i].msg);
+						userORemail.classList.add('is-invalid')
+						LogErrorEmail.innerText = res.error[i].msg
+					case "password":
+						console.log(res.error[i].msg);
+						userLogPass.classList.add('is-invalid')
+						LogPassError.innerText= res.error[i].msg
+						break;
+					default:
+						break;
+				}
+				}
+				}
+			
+
+			})
+			.catch((err) =>{
+				console.log(err)
+			})
+		} catch (error) {
+			console.log(error)
+		}
+		}
+
+		
+	}
+) 
+</script>
+
+
